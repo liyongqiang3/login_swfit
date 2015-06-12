@@ -39,6 +39,7 @@ class TloginViewController: BaseViewController {
         loginButton = THighlightButton(frame: CGRectMake(view_padding_x, y, button_wdith, button_height))
         loginButton?.backgroundColor = ColorRGB.rgb(0xf2bd7d)
         loginButton?.setTitle("登陆", forState:UIControlState.Normal)
+        loginButton?.addTarget(self, action: "onClickloginButtonEvent:", forControlEvents: UIControlEvents.TouchUpInside);
         self.view.addSubview(logoImageView!)
         self.view.addSubview(userNameText!)
         self.view.addSubview(passwordText!)
@@ -48,6 +49,14 @@ class TloginViewController: BaseViewController {
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
+    }
+    func onClickloginButtonEvent(sender:THighlightButton){
+        if (userNameText?.text.isEmpty == true){
+                    HintViewTool .alertErrorMessage("请输入用户名！")
+        }
+        if( passwordText?.text.isEmpty  == true){
+            HintViewTool .alertErrorMessage("请输入密码！")
+        }
     }
     
 }
